@@ -91,5 +91,12 @@ foreach x of varlist effectiverealtime effectivenessstored effectivenessremote {
 }
 *-------------------------------------------------------------------------------
 
+*Additonal analysis table 6 (Barriers by public vs private)
+foreach x of varlist barrierprivatecostandpurchase barrierprivatelackofinfoquality _v1 barrierprivatepoorinfrastructure barrierprivatetroubleshooting barrierprivatetraining barrierprivatepatientreluctance barrierprivateconfidence barrierprivatebillling barrierprivatepayment barrierprivateliability barrierprivateinsurance barrierprivatepreparation {
+	
+	tabstat `x', by(practiceset) stat (p50 iqr) format(%9.2f) col(stat) long
+	kwallis `x', by(practiceset)
+}
+
 
 *------------------------------END----------------------------------------------
